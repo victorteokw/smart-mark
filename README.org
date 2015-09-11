@@ -1,0 +1,21 @@
+* smart-mark
+
+smart-mark restores cursor position after mark.
+
+For example:
+
+buffer line 1
+buffer line 2 cursor is | here
+buffer line 3
+buffer line 4
+
+when you `mark-whole-buffer`,
+
+\| buffer line 1
+buffer line 2
+buffer line 3
+buffer line 4
+
+the cursor moves to the beginning of the buffer, and you lose the cursor position,
+
+with smart-mark, just press C-g, and the point restore back just where it was.
