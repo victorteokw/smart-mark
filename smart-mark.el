@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2015 Zhang Kai Yu
 
-;; Author: Kai Yu(defvar smart-mark-point-before-mark nil <1@YeaMacky.local>
+;; Author: Kai Yu <yeannylam@gmail.com>
 ;; Keywords: mark, restore
 
 ;; This program is free software; you can redistribute it and/or modify
