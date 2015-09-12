@@ -1,6 +1,7 @@
 * smart-mark
 
 smart-mark restores cursor position after mark.
+smart-mark-mode is a global minor mode.
 
 For example:
 #+begin_src
@@ -10,7 +11,7 @@ buffer line 3
 buffer line 4
 #+end_src
 
-when you `mark-whole-buffer`,
+when `smart-mark-mode` is active and you `mark-whole-buffer`,
 #+begin_src
 | buffer line 1
 buffer line 2
