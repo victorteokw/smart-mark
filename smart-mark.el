@@ -50,10 +50,9 @@
 
 (defun smart-mark-restore-cursor ()
   "Restore cursor position saved just before mark."
-  (if smart-mark-point-before-mark
-      (progn
-        (goto-char smart-mark-point-before-mark)
-        (setq smart-mark-point-before-mark nil))))
+  (when smart-mark-point-before-mark
+    (goto-char smart-mark-point-before-mark)
+    (setq smart-mark-point-before-mark nil)))
 
 (provide 'smart-mark)
 ;;; smart-mark.el ends here
