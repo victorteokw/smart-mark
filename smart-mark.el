@@ -44,32 +44,18 @@
   (when (memq last-command smart-mark-mark-functions)
     (smart-mark-restore-cursor)))
 
-;; (defmacro smart-mark-advise-all ()
-;;   `(progn
-;;      ,@(mapcar (lambda (f)
-;;                  `(defadvice ,f (before smart-mark-set-restore-before-mark activate)
-;;                     "Save point to `smart-mark-point-before-mark' before this function runs."
-;;                     (setq smart-mark-point-before-mark (point))))
-;;                smart-mark-mark-functions)))
-
 (defun smart-mark-advice-all ()
   "Advice all `smart-mark-mark-functions' so that point is initially saved."
-  (advice-add #'mark-page :before #'smart-mark-set-restore-before-mark)
-  (advice-add #'mark-paragraph :before #'smart-mark-set-restore-before-mark)
-  (advice-add #'mark-whole-buffer :before #'smart-mark-set-restore-before-mark)
-  (advice-add #'mark-sexp :before #'smart-mark-set-restore-before-mark)
-  (advice-add #'mark-defun :before #'smart-mark-set-restore-before-mark)
-  (advice-add #'mark-word :before #'smart-mark-set-restore-before-mark)
+  (mapc (lambda (f)
+          (advice-add f :before #'smart-mark-set-restore-before-mark))
+   smart-mark-mark-functions)
   (advice-add #'keyboard-quit :before #'smart-mark-restore-cursor-when-cg))
 
 (defun smart-mark-remove-advices ()
   "Remove all advices for `smart-mark-mark-functions'."
-  (advice-remove 'mark-page #'smart-mark-set-restore-before-mark)
-  (advice-remove 'mark-paragraph #'smart-mark-set-restore-before-mark)
-  (advice-remove 'mark-whole-buffer #'smart-mark-set-restore-before-mark)
-  (advice-remove 'mark-sexp #'smart-mark-set-restore-before-mark)
-  (advice-remove 'mark-defun #'smart-mark-set-restore-before-mark)
-  (advice-remove 'mark-word #'smart-mark-set-restore-before-mark)
+  (mapc (lambda (f)
+          (advice-remove f #'smart-mark-set-restore-before-mark))
+        smart-mark-mark-functions)
   (advice-remove 'keyboard-quit #'smart-mark-restore-cursor-when-cg))
 
 ;;;###autoload
