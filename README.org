@@ -1,4 +1,4 @@
-* smart-mark
+* smart-mark [[http://melpa.org/#/smart-mark][file:http://melpa.org/packages/smart-mark-badge.svg]]
 
 smart-mark restores cursor position after mark.
 smart-mark-mode is a global minor mode.
