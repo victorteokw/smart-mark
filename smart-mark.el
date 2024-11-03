@@ -33,7 +33,8 @@
   '(mark-page mark-paragraph mark-whole-buffer mark-sexp mark-defun mark-word)
   "Functions with marking behavior.")
 
-(defun smart-mark-set-restore-before-mark (&rest args)
+(defun smart-mark-set-restore-before-mark (&rest _)
+  "Set a restore point before adding a mark."
   (setq smart-mark-point-before-mark (point)))
 
 (defun smart-mark-restore-cursor ()
@@ -43,6 +44,7 @@
     (setq smart-mark-point-before-mark nil)))
 
 (defun smart-mark-restore-cursor-when-cg ()
+  "Restore the cursor when last command is mark command."
   (when (memq last-command smart-mark-mark-functions)
     (smart-mark-restore-cursor)))
 
@@ -64,6 +66,7 @@
 (define-minor-mode smart-mark-mode
   "Mode for easy expand line when expand line is activated."
   :global t
+  :group 'convenience
   (if smart-mark-mode
       (smart-mark-advice-all)
     (smart-mark-remove-advices)))
